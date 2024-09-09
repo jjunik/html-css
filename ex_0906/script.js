@@ -5,6 +5,8 @@
     document.addEventListener("DOMContentLoaded", 
         // html 코드가 로딩된 다음 처리할 작업
         function(e){
+        // input 태그가 만들어지기 전에 찾아달라고 할 수 있기때문에
+        // input 태그가 로딩되지 않았을  시 button에 null을 저장할수있따. 
         // input 태그를 찾아 button 변수에 저장
         let button = document.querySelector("input");
         // button 변수에 이벤트리스너 추가
