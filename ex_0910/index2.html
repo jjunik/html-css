@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    body { width:960px; }
+
+	#search_btn { padding:5px 20px; border: 1px solid #bfbfbf; color: #bfbfbf; }
+	.view_btn { width:70px; padding:5px 20px; border: 1px solid red; color: red; }
+	.borrow_btn { width:70px; padding:5px 20px; ; border: 1px solid blue; color: blue; }
+	
+    .fl { float:left; }
+	.f2 { float:right; }
+    
+	div#div2 input[type="text"] { width:750px; padding:5px; } 
+	table { border-collapse: collapse; table-layout:fixed; }
+	table, tr { border:1px solid black; }
+	td { padding:15px 10px; }
+	tr>td:nth-child(1) { width:50px; }
+	tr>td:nth-child(2) { width:450px; }
+	tr>td:nth-child(3) { width:100px; }
+	tr>td:nth-child(4) { width:50px; }
+	tr>td:nth-child(5) { width:50px; }
+    </style>
+</head>
+<body>
+    <div style="border: solid 3px #000;">
+    <div id="img">
+        <img src="http://koreaisacademy.com/renewal2016/img/mainNew/it_logo_sp.png" width="150">
+        <hr>
+    </div>
+
+    <div id="div1" class="f1">
+        <button id="book_search_btn">도서검색</button>
+
+    </div>
+
+    <form action="next_page.html">
+
+    <div id="div2" class="f1">
+        <input type="text" placeholder="도서명 검색">
+        <button id="search_btn">검색</button><br>
+        <div class="f2">정렬방식
+        <select name="choose" id="choose">
+            <option hidden="" disabled="disabled" selected="selected" value="">===선택하세요===</option>
+            <option value="오름차순">도서명 오름차순</option>
+            <option value="내림차순">도서명 내림차순</option>
+        </select>
+    </div>
+    </div>
+
+    <div style="clear:both"></div>
+    
+    </form>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>도서명</td>
+            <td>대출중</td>
+            <td><button class="view_btn">보기</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>도서명</td>
+            <td>대출가능</td>
+            <td><button class="view_btn">보기</button></td>
+            <td><button class="borrow_btn">대출</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>도서명</td>
+            <td>대출가능</td>
+            <td><button class="view_btn">보기</button></td>
+            <td><button class="borrow_btn">대출</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>도서명</td>
+            <td>대출가능</td>
+            <td><button class="view_btn">보기</button></td>
+            <td><button class="borrow_btn">대출</button></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
