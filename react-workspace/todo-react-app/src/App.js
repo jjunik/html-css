@@ -23,7 +23,10 @@ const addItem = (item) =>{
   setItems([...items, item]);
   console.log("items : ", item);
 }
-
+// 내용 수정
+  const editItem = () => {
+    setItems([...items]);// 수정한 내용을 재 랜더링
+  }
 //삭제
 const deleteItem = (item) => {
   // 삭제할 아이템을 찾는다
@@ -42,7 +45,7 @@ let todoItems = items.length > 0 && (
   <Paper style={{margin:16}}>
     <List>
     {items.map((item) =>(
-      <Todo item={item} key={item.id} deleteItem={deleteItem}/>
+      <Todo item={item} key={item.id} deleteItem={deleteItem} editItem={editItem}/>
     ))}
     </List>
   </Paper>

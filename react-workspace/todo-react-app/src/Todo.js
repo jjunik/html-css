@@ -21,7 +21,26 @@ hjook을 사용하면 리엑트가 제공하는 기능과 상태변수를 사용
 const Todo = (props) => {
     const [item, setItem] = useState(props.item);
     const deleteItem = props.deleteItem;
-
+    const [readOnly, setReadOnly] = useState(true);
+    const editItem = props.editItem;
+    const editEventHandler = (e) => {
+        item.title = e.target.value; // 변경만으론 렌더링이 안됨
+        editItem(); // 없으면 수정 안됨
+    }
+    const checkboxEventHandler = (e) => {
+        item.done = e.target.checked;
+        editItem();
+    }
+    // turnOffReadOnly 함수
+    // 내용쪽을 클릭했을 때 수정 가능한 상태로 만들기
+    const turnOffReadOnly = () => {
+        setReadOnly(false);
+    }
+    const turnOnReadOnly = (e) =>{
+        if(e.key === 'Enter'){
+            setReadOnly(true);
+        }
+    }
     // deleteEventHandler 작성
     const deleteEventHandler = () =>{
         // 삭제하려고 하는 todo 전달
@@ -29,10 +48,13 @@ const Todo = (props) => {
     }
     return(
         <ListItem>
-            <Checkbox checked={item.done}/>
+            <Checkbox checked={item.done} onChange={checkboxEventHandler}/>
             <ListItemText>
                 <InputBase
-                inputProps={{"aria-label" : "naked"}}
+                inputProps={{"aria-label" : "naked" , "readOnly" : readOnly}}
+                onClick={turnOffReadOnly}
+                onKeyDown={turnOnReadOnly}
+                onChange={editEventHandler}
                 type ="text"
                 id={item.id} 
                 name={item.id} 
