@@ -34,7 +34,7 @@ const AddTodo = (props) => {
                 <TextField placeholder="Add Todo Here" fullWidth onChange={onInputChange} onKeyDown={enterKeyEventHandler} value={item.title}/>
             </Grid>
             <Grid xs={1} md={1} item>
-                <Button fullwidth="true" style={{height : '100%'}} color="secondary" variant="outlined" onClick={onButtonClick}>
+                <Button fullWidth style={{height : '100%'}} color="secondary" variant="outlined" onClick={onButtonClick}>
                     +
                 </Button>
             </Grid>

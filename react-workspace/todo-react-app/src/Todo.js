@@ -24,12 +24,13 @@ const Todo = (props) => {
     const [readOnly, setReadOnly] = useState(true);
     const editItem = props.editItem;
     const editEventHandler = (e) => {
-        item.title = e.target.value; // 변경만으론 렌더링이 안됨
-        editItem(); // 없으면 수정 안됨
+        setItem({...item,title:e.target.value})
+
     }
+    
     const checkboxEventHandler = (e) => {
         item.done = e.target.checked;
-        editItem();
+        editItem(item);
     }
     // turnOffReadOnly 함수
     // 내용쪽을 클릭했을 때 수정 가능한 상태로 만들기
@@ -39,6 +40,7 @@ const Todo = (props) => {
     const turnOnReadOnly = (e) =>{
         if(e.key === 'Enter'){
             setReadOnly(true);
+            editItem(item);
         }
     }
     // deleteEventHandler 작성

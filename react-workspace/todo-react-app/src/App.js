@@ -1,38 +1,45 @@
 import logo from './logo.svg';
 import Todo from './Todo';
 import Count from './Count';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {Container, List, Paper} from "@mui/material";
 import './App.css';
 import AddTodo from './AddTodo';
+import axios from 'axios';
+import {call} from './service/ApiService';
 
 export default function App() {
-  const [items, setItems] = useState([
+  const [items, setItems] = useState([])
+  useEffect(() =>{
+  // 백엔드에게 요청하기 
+call("/todo", "GET")
+.then(result => setItems(result.data))
+  },[])
 
-]);
+  
 
 //추가
 // 전체 데이;터를 App.js에서 관리하기 때문에 함수를 여기에 작성
 const addItem = (item) =>{
-  item.id = 'ID-' + items.length;
-  item.done = false; // done 초기화
+  call("/todo", "POST", item)
+  .then(result => setItems(result.data))
+ }
+  // done 초기화
   // ... 스프레드 연산자
   // 배열이나 객체의 요소를 개별적으로 펼쳐서 다른 배열이나 객체에
   // 삽입 할 때 사용한다.
   // 리액트에서 상태를 업데이트 할 때 사용한다.
-  setItems([...items, item]);
-  console.log("items : ", item);
-}
+
 // 내용 수정
-  const editItem = () => {
-    setItems([...items]);// 수정한 내용을 재 랜더링
+  const editItem = (item) => {
+    call("/todo", "PUT", item)
+    .then(result => setItems(result.data))
   }
 //삭제
 const deleteItem = (item) => {
   // 삭제할 아이템을 찾는다
-  const newItems = items.filter(e => e.id !== item.id)
-  // 삭제할 아이템을 제외한 아이템을 다시 배열에 저장한다.
-  setItems([...newItems]);
+call("/todo", "DELETE", item)
+.then(result => setItems(result.data))
 }
 // App.js에서 todo에 deleteItem 연결하기
 
@@ -54,7 +61,7 @@ let todoItems = items.length > 0 && (
   return (
     <div className="App">
       <container maxWidth="md">
-      <AddTodo addItem={addItem}/>
+      <AddTodo addItem={addItem}></AddTodo>
       {/* props를 컴포넌트에 전달하기
         이름 = {useState값} */}
       <div className='TodoList'>{todoItems}</div>
