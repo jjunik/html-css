@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';// App 컴포넌트 import
+import AppRouter from './AppRouter';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -18,7 +19,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(//ReactDOM이 내부 컴포넌트들을 'root'엘리먼트에 render함
   <React.StrictMode>
-    <App /> 
+    <AppRouter /> 
   </React.StrictMode>
 );
 
