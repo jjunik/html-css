@@ -7,21 +7,14 @@ import { API_BASE_URL } from './api-config'
 export async function call(api,method,request){
 
     let headers = new Headers({
-        "Content-Type" : "application/json"
+        "Content-Type":"application/json"
     })
-    // 로컬 스토리지에서 ACCESS TOKEN 가져오기
-    const accessToken = localStorage.getItem("ACCESS_TOKEN");
-    if(accessToken && accessToken !== null){
-        headers.append("Authorization","Bearer " + accessToken);
-    }
     //기본 옵션 설정
     let options = {
         headers:headers,
         url : API_BASE_URL + api,
         method : method
-        
-        }
-    
+    }
 
     //request가 존재하는 경우 : POST,PUT,DELETE와 같은 GET 이외의 요청일 때
     //요청 본문에 데이터를 담아 보낸다.
@@ -39,36 +32,37 @@ export async function call(api,method,request){
     //요청 중에 오류가 발생한 경우 실행되는 코드
     .catch(error => {
         //에러가 발생하면, 이를 console.log로 출력하여 디버깅하거나 문제를 파악할 수 있도록 한다.
+        //상태코드가 403일때 login으로 리다이렉트
         if(error.status === 403){
-            window.location.href='/login';
+            window.location.href="/login";
         }
-        // console.log("http error")
-        // console.log(error.status)//상태코드
-    }) 
-}
+    })
+}//call
+
 //로그인
 export function signin(userDTO){
     return call("/auth/signin","POST",userDTO)
         .then((response) => {
-            // 토큰이 있을 때
+            //토큰이 있을 때
             if(response.token){
-                // 로컬 스토리지에 토큰 저장
-                localStorage.setItem("ACCESS_TOKEN", response.token);
+                //로컬 스토리지에 토큰 저장
+                localStorage.setItem("ACCESS_TOKEN",response.token);
                 window.location.href="/";
-            }else{
+            } else {
                 window.location.href="/login";
             }
+
         })
-}
+}//signin
 
 //로그아웃
 export function signout(){
-    localStorage.setItem("ACCESS_TOKEN", null);
-    window.location.href='/login';
+    //로컬스토리지의 값을 null로 만든다.
+    localStorage.setItem("ACCESS_TOKEN",null);
+    window.location.href="/login"
 }
 
 //회원생성
 export function signup(userDTO){
     return call("/auth/signup","POST",userDTO);
-    
 }
