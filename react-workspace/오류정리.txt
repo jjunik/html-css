@@ -1,0 +1,12 @@
+404 Not Found 
+요청경로가 잘못됨
+
+리액트
+call("요청경로") -> 요청경로가 없거나 오타가 났거나
+
+스프링부트
+@RestController
+@RequestMapping("리소스") -> 리소스가 없거나 오타가 났거나
+xxController{
+	@GetMapping("리소스") -> 리소스가 없거나 오타가 났거나
+}
