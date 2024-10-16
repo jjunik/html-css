@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState,useRef, useEffect} from 'react';
+import {useState,useRef} from 'react';
 import { call, signup } from '../service/ApiService';
 function Signup(){
 
@@ -74,8 +74,9 @@ function Signup(){
 
 
     return(
+        
         <form noValidate onSubmit={handlesubmit}>
-            <table border="1">
+            <table border="1" align='center'>
                 <caption>:::회원가입:::</caption>
                 <tr>
                     <th>아이디</th>
@@ -110,6 +111,7 @@ function Signup(){
                 </tr>
             </table>
         </form>
+        
     )
 }
 

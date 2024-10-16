@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { call } from "../service/ApiService";
+
 function MyInfo(){
 
     const[user, setUser] = useState({
@@ -22,13 +23,31 @@ function MyInfo(){
     }))
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const userId = user.userId;
+        const pwd = data.get("pwd");
+        const name = data.get("name");
+        const email = data.get("email");
+
+        console.log("userId :" , userId)
+        console.log("pwd :" ,pwd )
+        console.log("name :" ,name )
+        console.log("email :" ,email )
+        call("/users","PUT",{userId:userId,pwd:pwd,name:name,email:email})
+        .then(result => {
+            window.location.href="/main"
+        })
+    }
+
     if(!user.userId){
         return <div>Loading...</div>
     }
  
     return(
-        <div>
-        <form noValidate>
+        <div className="App" >
+        <form noValidate onSubmit={handleSubmit}>
             <table border="1" align="center">
                 <caption>:::내정보:::</caption>
                 <tr>

@@ -35,7 +35,7 @@ const Login = () => {
                 </tr>
                 <tr>
                     <td colSpan="2" align="center">
-                        <input type="submit" value="로그인" onClick={handlesubmit}/>
+                        <input type="submit" value="로그인"/>
                         <input type="button" value="회원가입" onClick={toSignup}/>
                     </td>
                 </tr>
