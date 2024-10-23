@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import Todo from './Todo'; // Todo 컴포넌트를 import
 //import Count from './Count';
 import React, { useState,useEffect } from 'react';
@@ -6,7 +5,6 @@ import { Container, List, Paper, Grid, Button, AppBar, Toolbar, Typography } fro
 import './App.css';
 import AddTodo from './AddTodo'
 import { call, signout } from './service/ApiService';
-import { Link } from 'react-router-dom';
 
 //컴포넌트
 //페이지에 렌더링할 React 엘리먼트를 반환하는 작고 재사용 가능한 코드조각

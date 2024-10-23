@@ -13,7 +13,7 @@ const hostname = window && window.location && window.location.hostname;
 
 if(hostname === "localhost"){
     backendHost = "http://localhost:5000";
-}else {backendHost = "http://springboot-developer2-env.eba-2wdgheyp.ap-northeast-2.elasticbeanstalk.com"
+}else {backendHost = "https://api.todojik.shop"
 }
 
 export const API_BASE_URL = `${backendHost}`
