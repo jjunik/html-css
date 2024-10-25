@@ -14,6 +14,12 @@ function MultiButtons(){
             case 'bookSearch':
                 navigate('/search');
                 break;
+            case 'map':
+                navigate('/map');
+                break;
+            case 'map2':
+                navigate('/map2');
+                break;
         }
     }
     
@@ -22,6 +28,8 @@ function MultiButtons(){
             <button id="address" onClick={handleButtonClick}>주소 찾기 api</button>
             <button id="bookSearch" onClick={handleButtonClick}>도서 찾기 api</button>
             <button id="newsSearch" onClick={handleButtonClick}>뉴스 찾기api</button>
+            <button id="map" onClick={handleButtonClick}>지도api</button>
+            <button id="map2" onClick={handleButtonClick}>지도api</button>
         </div>
     );
 
