@@ -6,7 +6,7 @@ import Address from './api/Address';
 import BookSearch from './api/BookSearch';
 import MyMap from './api/Map';
 import MyMap2 from './api/Map2';
-
+import MyMap3 from './api/Map3';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Route path="/search" element={<BookSearch/>} />
         <Route path="/map" element={<MyMap/>} />
         <Route path="/map2" element={<MyMap2/>} />
+        <Route path="/map3" element={<MyMap3/>} />
       </Routes>
       </BrowserRouter>
     </div>
