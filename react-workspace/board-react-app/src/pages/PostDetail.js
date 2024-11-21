@@ -13,7 +13,9 @@ const PostDetail = () => {
     const author = location.state.author;
     const writingTime = location.state.writingTime;
     const content = location.state.content;
-    console.log(title);
+
+
+    
     return(
         <div>
             <div>
