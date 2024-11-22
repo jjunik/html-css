@@ -24,6 +24,7 @@ const BoardList = () => {
         try {
             const response = await axios.get('http://localhost:9090/api/board/all');
             console.log(response.data)
+            setBoardList(response.data.data);
         } catch (error) {
             
         }
@@ -33,7 +34,7 @@ const BoardList = () => {
         getBoardList();
         // setBoardList(boardList)
         // setTotalPages(Math.ceil(boardList.length / postsPerPage)) // 총 페이지 수 계산
-    },[postsPerPage,boardList]);
+    },[]);
 
     // 현재 페이지에서 보여줄 게시글의 마지막 인덱스 계산
     const indexOfLastPost = currentPage * postsPerPage;
@@ -62,7 +63,7 @@ const BoardList = () => {
             </div>
             <br/>
             <ul className="board-posts">
-                {currentPosts.map((board) => (
+                {boardList.length > 0 ? (currentPosts.map((board) => (
                     <li key={board.id} className="board-post-item">
                         <Link to={`/post/${board.id}`} 
                         state={{
@@ -77,7 +78,9 @@ const BoardList = () => {
                         <span>작성자: {board.author}</span>
                         <span>작성시간: {board.writingTime}</span>
                     </li>
-                ))}
+                )))
+                :(<p>게시글이 없습니다.</p>)
+            }
             </ul>
             {/* 페이지당 게시물 수를 선택하는 드롭다운 */}
             <div className="board-posts-per-pages">

@@ -6,6 +6,7 @@ import React, {useState, useEffect, useContext} from "react"
 import { BoardContext } from "../context/BoradContext"
 import { useParams,useNavigate } from "react-router-dom"
 import CustomButton from "../components/CustomButton"
+import axios from "axios"
 
 const DetailPost = () => {
     //BoardList에서 전달한 id를 받아온다.
@@ -19,14 +20,10 @@ const DetailPost = () => {
     const [board, setBoard] = useState({});
 
     useEffect(()=>{
-        //배열에 들어있는 게시글들 중 파라미터로 전달받은 id와 일치하는
-        //게시글 한 건 찾기
-        const post = boardList.find((item) => item.id === parseInt(id));
-        if(post) {
-            setBoard(post); //찾은 게시물을 state에 저장
-        } else{
-            alert("게시글을 찾을 수 없습니다.");
-        }
+        const response = axios(`http://localhost:9090/api/board/get/${id}`,{
+            headers:{"Content-Type":"application/json"},
+            method : "get"
+        })
     },[id])
 
     const moveToBoard = () => {

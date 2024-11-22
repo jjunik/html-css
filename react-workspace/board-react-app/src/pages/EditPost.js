@@ -8,7 +8,6 @@ const EditPost = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [post, setPost] = useState({
-        id: id,
         author:'',
         title:'',
         content:'',
@@ -18,12 +17,11 @@ const EditPost = () => {
     const {author, title, content} = post;
 
     useEffect(() => {
-        const post = boardList.find((item) => item.id === parseInt(id));
-        if(post){
-            setPost(post);
-        } else {
-            alert('해당 게시글이 없습니다.');
-        }
+        const response = axios('http://localhost:9090/api/board/edit',{
+            headers:{"Content-Type":"application/json"},
+            data : JSON.stringify(post),
+            method : "update"
+        })
     },[])
 
     const backToPost = () => {

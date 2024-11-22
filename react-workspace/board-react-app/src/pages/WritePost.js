@@ -3,6 +3,7 @@ import { BoardContext } from "../context/BoradContext"
 import CustomInput from "../components/CustomInput"
 import CustomButton from "../components/CustomButton"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const WritePost = () => {
     const [title, setTitle] = useState('');
@@ -14,19 +15,23 @@ const WritePost = () => {
     const savePost = (e) => {
         e.preventDefault();
 
+        // id는 spring에서 자동으로 생성
+        // 등록 날짜는 서버에서 받아옴
         const newPost = {
-            id: boardList.length+1,
             title,
             author,
             content,
-            writingTime: new Date().toISOString().slice(0,16).replace("T"," "),
         }
-        setBoardList([newPost, ...boardList]);
+        const response = axios('http://localhost:9090/api/board/write',{
+            headers:{"Content-Type":"application/json"},
+            data : JSON.stringify(newPost),
+            method : "post"
+        })
+        console.log(response.data);
         alert("게시물이 등록되었습니다.")
         navigate("/")
     }
     
-
     const backToBoard= () =>{
         navigate("/")
     }
