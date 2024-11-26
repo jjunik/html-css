@@ -1,52 +1,53 @@
 import React, {useEffect, useState, useContext} from "react";
-import { BoardContext } from "../context/BoradContext";
+import { BoardContext } from "../context/BoardContext";
 import CustomButton from "../components/CustomButton";
-import CustomInput from "../components/CustomInput";
+import CustomInput from "../components/CusomInput";
 import { useNavigate,useParams } from "react-router-dom";
+import axios from "axios";
 
 const EditPost = () => {
     const navigate = useNavigate();
     const {id} = useParams();
-    const [post, setPost] = useState({
-        author:'',
-        title:'',
-        content:'',
-    })
+    const [post, setPost] = useState({})
     const {boardList,setBoardList} = useContext(BoardContext);
 
     const {author, title, content} = post;
 
     useEffect(() => {
-        const response = axios('http://localhost:9090/api/board/edit',{
-            headers:{"Content-Type":"application/json"},
-            data : JSON.stringify(post),
-            method : "update"
-        })
+       //수정한 내용을 데이터베이스에 저장
+       const getBoardData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:9090/api/board/get/${id}`);
+          setPost(response.data.data[0]); // 데이터 상태를 업데이트
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      
+      getBoardData();
     },[])
 
     const backToPost = () => {
         navigate("/post/"+id);
     }
 
-    // const handleOnChange = (e) => {
-    //     const {value, name} = e.target;
-    //     setPost((prevPost) => ({
-    //         ...prevPost,
-    //         [name]:value,
-    //     }))
-    // }
+    const updatePost = async() => {
+        const response = await axios(`http://localhost:9090/api/board/modify/${id}`,{
+            headers:{
+                "Content-Type":"application/json"
+            },
+            data: JSON.stringify(post),
+            method:'put',
+        })
+        console.log(response);
 
-    const updatePost = (e) => {
-        e.preventDefault();
-        const newBoardList = boardList.map((item) => {
-            if(item.id === post.id){
-                return {...item, ...post}
-            }
-            return item;
-        });
-
-        setBoardList(newBoardList)
-        navigate("/post/"+id);
+        if(response.data){
+            alert('수정이 완료되었습니다.');
+            navigate("/post/"+id);
+        } else {
+            alert('수정에 실패하였습니다.');
+        }
+        
     }
 
     return(

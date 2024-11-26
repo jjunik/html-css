@@ -1,17 +1,17 @@
-import React from "react";
-import { Input, TextField } from "@mui/material";
+import React from "react"
+import { TextField } from "@mui/material"
 
 const CustomInput =({
     label,
     type="text",
-    multiline=false,
-    rows=1,
+    multiline= false,
+    rows = 1,
     value,
     onChange,
-    readOnly=false,
+    readOnly = false,
     placeholder="",
 })=>{
-    return(
+     return(
         <TextField
             fullWidth
             label={label}
@@ -25,9 +25,8 @@ const CustomInput =({
                 readOnly,
                 placeholder,
             }}
-        >
-
-        </TextField>
-    )
+        />
+     )
 }
+
 export default CustomInput;
