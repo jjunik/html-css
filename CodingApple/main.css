@@ -29,9 +29,9 @@
     box-shadow: 5px 5px 5px 5px gray;
 }
 
-p {
+/* p {
     text-align: center;
-}
+} */
 
 .container {
     width: 800px;
@@ -65,4 +65,27 @@ p {
     height: 100px;
     background: grey;
     /* clear: both; */
+}
+
+.main-background {
+    width: 100%;
+    height: 500px;
+    background-image: url(img/shoes.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 1px;
+}
+
+.main-title {
+    color: black;
+    font-size: 40px;
+    margin-top: 70px;
+}
+
+.main-content {
+    color: black;
+    font-size: 30px;
+    margin-top: 100px;
 }

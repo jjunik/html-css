@@ -37,3 +37,12 @@ img {
     display: inline-block;
     vertical-align: top;
 }
+
+.navbar li {
+    display: inline-block;
+}
+
+.navbar a {
+    font-size: 16px;
+}
+
