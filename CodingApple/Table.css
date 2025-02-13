@@ -1,0 +1,24 @@
+img {
+    width: 100px;
+    height: 80px;;
+    padding: 20px;
+}
+
+.table-back {
+    width: 100%;
+    background-color: #c2d3de;
+    padding: 30px;
+}
+
+table {
+    background-color: white;
+    margin: auto;
+    width: 80%;
+    border-top: 0px solid black;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+td {
+    border-top: 1px solid black;
+}
